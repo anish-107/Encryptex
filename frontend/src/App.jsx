@@ -10,7 +10,7 @@ function App() {
 
   const encryptText = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/encrypt', { text })
+      const response = await axios.post('https://encryptex.onrender.com/encrypt', { text })
       setResult(response.data.result)
     } catch (error) {
       console.error('Encryption failed:', error)
@@ -19,7 +19,7 @@ function App() {
 
   const decryptText = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/decrypt', { text })
+      const response = await axios.post('https://encryptex.onrender.com/decrypt', { text })
       setResult(response.data.result)
     } catch (error) {
       console.error('Decryption failed:', error)
