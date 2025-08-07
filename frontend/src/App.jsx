@@ -1,26 +1,29 @@
-import { useState } from 'react'
-import encryptionLogo from '/encryption.svg'
-import decryptionLogo from './assets/decryption.svg'
-import './App.css'
+import { useState } from 'react';
+import encryptionLogo from '/encryption.svg';
+import decryptionLogo from './assets/decryption.svg';
+import './App.css';
+import axios from 'axios';
 
 function App() {
   const [text, setText] = useState('')
   const [result, setResult] = useState('')
 
-  const encryptText = () => {
-    const encrypted = text
-      .split('')
-      .map(char => String.fromCharCode(char.charCodeAt(0) + 3))
-      .join('')
-    setResult(encrypted)
+  const encryptText = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/encrypt', { text })
+      setResult(response.data.result)
+    } catch (error) {
+      console.error('Encryption failed:', error)
+    }
   }
 
-  const decryptText = () => {
-    const decrypted = text
-      .split('')
-      .map(char => String.fromCharCode(char.charCodeAt(0) - 3))
-      .join('')
-    setResult(decrypted)
+  const decryptText = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/decrypt', { text })
+      setResult(response.data.result)
+    } catch (error) {
+      console.error('Decryption failed:', error)
+    }
   }
 
   return (
