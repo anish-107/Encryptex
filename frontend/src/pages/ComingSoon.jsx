@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import encryptionLogo from '/encryption.svg';
-import decryptionLogo from '../assets/decryption.svg';  // fixed path
+import decryptionLogo from '../assets/decryption.svg';
 import axios from 'axios';
 
 function ComingSoon() {
@@ -11,7 +11,7 @@ function ComingSoon() {
 
   const encryptText = async () => {
     try {
-      const response = await axios.post('https://encryptex.onrender.com/encrypt', { text })
+      const response = await axios.post('https://anishk7629.pythonanywhere.com/encrypt', { text })
       setResult(response.data.result)
     } catch (error) {
       console.error('Encryption failed:', error)
@@ -20,7 +20,7 @@ function ComingSoon() {
 
   const decryptText = async () => {
     try {
-      const response = await axios.post('https://encryptex.onrender.com/decrypt', { text })
+      const response = await axios.post('https://anishk7629.pythonanywhere.com/decrypt', { text })
       setResult(response.data.result)
     } catch (error) {
       console.error('Decryption failed:', error)
